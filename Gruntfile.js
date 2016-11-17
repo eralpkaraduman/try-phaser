@@ -4,7 +4,7 @@ module.exports = function(grunt) {
     pkg: grunt.file.readJSON('package.json'),
     webpack: {
       game: {
-        entry: "./game/game.js",
+        entry: "./game/init.js",
         output: {
           path: 'public/',
           filename: 'bin/bundle.js'
