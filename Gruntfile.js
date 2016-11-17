@@ -18,7 +18,7 @@ module.exports = function(grunt) {
         ],
 				tasks: ["webpack"],
 				options: {
-					spawn: true,
+					spawn: false,
 				}
 			}
 		},
@@ -53,7 +53,7 @@ module.exports = function(grunt) {
         options: {
           port: 8080,
           base: 'public',
-          keepalive: true,
+          keepalive: false,
           open: {
             target: 'http://localhost:8080'
           },
