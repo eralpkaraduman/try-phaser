@@ -2,12 +2,32 @@ module.exports = function(grunt) {
 
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
+    webpack: {
+      game: {
+        entry: "./game/game.js",
+        output: {
+          path: 'public/',
+          filename: 'bin/bundle.js'
+        }
+      }
+    },
+    watch: {
+			game: {
+				files: [
+          "game/**/*.js"
+        ],
+				tasks: ["webpack"],
+				options: {
+					spawn: false,
+				}
+			}
+		},
     jshint: {
       all : [
         'Gruntfile.js',
         'public/**/*js',
         'server/**/*js',
-        '!public/lib/**'
+        '!public/bin/**'
       ]
     },
     copy: {
@@ -17,7 +37,7 @@ module.exports = function(grunt) {
             expand: true,
             cwd: 'node_modules/phaser/build',
             src: 'phaser.min.js',
-            dest: 'public/lib'
+            dest: 'public/bin'
           }
         ]
       }
@@ -27,7 +47,7 @@ module.exports = function(grunt) {
         options: {
           port: 8080,
           base: 'public',
-          keepalive: true,
+          keepalive: false,
           open: {
             target: 'http://localhost:8080'
           },
@@ -43,6 +63,8 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-connect');
+  grunt.loadNpmTasks('grunt-contrib-watch');
+  grunt.loadNpmTasks('grunt-webpack');
 
-  grunt.registerTask('default', ['copy','jshint', 'connect']);
+  grunt.registerTask('default', ['copy', 'webpack', 'jshint', 'connect', 'watch']);
 };
