@@ -42,22 +42,58 @@
 /************************************************************************/
 /******/ ([
 /* 0 */
-/***/ function(module, exports) {
+/***/ function(module, exports, __webpack_require__) {
 
-	var game = null;
+	var utils = __webpack_require__(1);
 
 	window.onload = function() {
 
-	    game = new Phaser.Game(800, 600, Phaser.AUTO, '', {
-	      preload: function() {
-	        game.load.image('logo', 'phaser.png');
-	      },
+	    utils.createGame();
+
+	    // window.Game = new Phaser.Game(800, 600, Phaser.AUTO, '', {
+	    //   preload: preloader.preload(),
+	    //   create: function() {
+	    //
+	    //     var logo = Game.add.sprite(
+	    //       window.Game.world.centerX,
+	    //       window.Game.world.centerY,
+	    //       'logo'
+	    //     );
+	    //
+	    //     logo.anchor.setTo(0.5, 0.5);
+	    //   }
+	    // });
+	};
+
+
+/***/ },
+/* 1 */
+/***/ function(module, exports) {
+
+	module.exports = {
+	  game: null,
+
+	  preload: function() {
+	    game.load.image('logo', 'phaser.png');
+	  },
+
+	  createGame: function() {
+
+	    self.game = new Phaser.Game(800, 600, Phaser.AUTO, '', {
+	      preload: this.preload,
 	      create: function() {
-	        var logo = game.add.sprite(game.world.centerX, game.world.centerY, 'logo');
+
+	        var logo = game.add.sprite(
+	          game.world.centerX,
+	          game.world.centerY,
+	          'logo'
+	        );
+
 	        logo.anchor.setTo(0.5, 0.5);
 	      }
 	    });
-	};
+	  }
+	}
 
 
 /***/ }

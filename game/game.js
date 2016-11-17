@@ -1,14 +1,20 @@
-var game = null;
+var utils = require("./utils");
 
 window.onload = function() {
 
-    game = new Phaser.Game(800, 600, Phaser.AUTO, '', {
-      preload: function() {
-        game.load.image('logo', 'phaser.png');
-      },
-      create: function() {
-        var logo = game.add.sprite(game.world.centerX, game.world.centerY, 'logo');
-        logo.anchor.setTo(0.5, 0.5);
-      }
-    });
+    utils.createGame();
+
+    // window.Game = new Phaser.Game(800, 600, Phaser.AUTO, '', {
+    //   preload: preloader.preload(),
+    //   create: function() {
+    //
+    //     var logo = Game.add.sprite(
+    //       window.Game.world.centerX,
+    //       window.Game.world.centerY,
+    //       'logo'
+    //     );
+    //
+    //     logo.anchor.setTo(0.5, 0.5);
+    //   }
+    // });
 };

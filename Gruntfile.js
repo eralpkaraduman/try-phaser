@@ -18,7 +18,7 @@ module.exports = function(grunt) {
         ],
 				tasks: ["webpack"],
 				options: {
-					spawn: false,
+					spawn: true,
 				}
 			}
 		},
@@ -38,6 +38,12 @@ module.exports = function(grunt) {
             cwd: 'node_modules/phaser/build',
             src: 'phaser.min.js',
             dest: 'public/bin'
+          },
+          {
+            expand: true,
+            cwd: 'node_modules/phaser/build',
+            src: 'phaser.map',
+            dest: 'public/bin'
           }
         ]
       }
@@ -47,7 +53,7 @@ module.exports = function(grunt) {
         options: {
           port: 8080,
           base: 'public',
-          keepalive: false,
+          keepalive: true,
           open: {
             target: 'http://localhost:8080'
           },
