@@ -1,10 +1,12 @@
+var webpack = require('webpack');
+
 module.exports = function(grunt) {
 
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
     webpack: {
       game: {
-        entry: "./game/init.js",
+        entry: "./game/main",
         output: {
           path: 'public/',
           filename: 'bin/bundle.js'
@@ -36,13 +38,7 @@ module.exports = function(grunt) {
           {
             expand: true,
             cwd: 'node_modules/phaser/build',
-            src: 'phaser.min.js',
-            dest: 'public/bin'
-          },
-          {
-            expand: true,
-            cwd: 'node_modules/phaser/build',
-            src: 'phaser.map',
+            src: 'phaser.*',
             dest: 'public/bin'
           }
         ]
@@ -58,7 +54,7 @@ module.exports = function(grunt) {
             target: 'http://localhost:8080'
           },
           onCreateServer: function() {
-            var boot = require('./server/boot.js');
+            var boot = require('./server/server.js');
             boot(grunt);
           }
         }
