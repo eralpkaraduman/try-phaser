@@ -11,8 +11,7 @@ module.exports = {
     logo.anchor.setTo(0.5, 0.8);
 
     var button = this.add.button(this.world.centerX, 500, 'btn', function() {
-
-      
+      game.state.start('game');
     }, this, 1, 0, 0);
 
     button.anchor.setTo(0.5, 0.5);
