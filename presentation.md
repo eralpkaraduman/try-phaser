@@ -60,16 +60,22 @@
 ## Rendering
 ## Scaling
 ## Particles
-## Tilemaps
-## Timers
-## Tweens
-## Animation
 
 ---
 
+## Tilemaps
+## Timers
+## Tweens
+
+---
+
+## Animation
 ## Sprites
 ## Input
 ## Text
+
+---
+
 ## Physics
 ## Audio
 ## Canvas / WebGL
@@ -360,4 +366,3 @@ Person.prototype.move = function(input) {
 }
 
 ```
-
