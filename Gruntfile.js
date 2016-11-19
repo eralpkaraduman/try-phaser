@@ -53,9 +53,9 @@ module.exports = function(grunt) {
           open: {
             target: 'http://localhost:8080'
           },
-          onCreateServer: function() {
+          onCreateServer: function(server, connect, options) {
             var boot = require('./server/server.js');
-            boot(grunt);
+            boot(grunt, server);
           }
         }
       }

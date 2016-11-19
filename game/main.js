@@ -10,3 +10,21 @@ game.state.add('game', gameState);
 game.state.add('intro', introState);
 game.state.start('boot');
 window.game = game;
+
+var localGameState = {};
+
+var socket = io('http://localhost:8080');
+socket.on('connect', function(){
+  console.log("connected!");
+});
+socket.on('event', function(data){
+  console.log("event");
+});
+socket.on('disconnect', function(){
+  console.log("disconnected!");
+});
+socket.on('error', function(){
+  console.log("error!");
+});
+
+window.socket = socket;

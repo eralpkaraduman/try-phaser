@@ -9,7 +9,8 @@
   "author": "eralp",
   "license": "ISC",
   "dependencies": {
-    "phaser": "^2.6.2"
+    "phaser": "^2.6.2",
+    "socket.io": "^1.5.1"
   },
   "devDependencies": {
     "grunt": "^1.0.1",
