@@ -8,7 +8,6 @@ module.exports = function(grunt, server) {
 
   io.sockets.on('connection', function(client) {
 
-    // do something with socket
     console.log("connected!");
 
     client.on('event', function(data){
@@ -26,6 +25,20 @@ module.exports = function(grunt, server) {
       };
 
       client.emit("createdGameCode", {"gameCode": gameCode});
+    });
+
+    client.on('joinGame', function(data) {
+      var enteredGameCode = data.gameCode;
+      console.log("requested to join game: "+ enteredGameCode);
+
+      var gameIndex = parseInt(enteredGameCode);
+      var gameState = gameStates[gameIndex];
+      if (gameState !== null) {
+
+        client.emit('joinedGame', {"gameCode": enteredGameCode});
+      } else {
+        console.log("game not found: "+ enteredGameCode);
+      }
     });
 
     client.on('hostStateUpdate', function(data){

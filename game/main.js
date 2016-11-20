@@ -3,6 +3,7 @@ var loadState = require("./loadState");
 var introState = require("./introState");
 var gameState = require("./gameState");
 var waitForJoinState = require("./waitForJoinState");
+var hackerState = require("./hackerState");
 
 var game = new Phaser.Game(800, 600, Phaser.AUTO, 'content', null);
 game.state.add('boot', bootState);
@@ -10,6 +11,7 @@ game.state.add('load', loadState);
 game.state.add('game', gameState);
 game.state.add('intro', introState);
 game.state.add('waitForJoinState', waitForJoinState);
+game.state.add('hackerState', hackerState);
 
 game.state.start('boot');
 window.game = game;
@@ -24,11 +26,17 @@ window.globals = {
 
   callCreateGame: function() {
     socket.emit("createGame");
+  },
+
+  callJoinGame: function() {
+    var enteredGameCode = prompt("Enter game code to join: ");
+    socket.emit("joinGame", {"gameCode": enteredGameCode});
   }
 
 }
 
-var socket = io('http://localhost:8080');
+var serverAdress = window.location.href;
+var socket = io(serverAdress);
 socket.on('connect', function(){
   console.log("connected!");
 });
@@ -49,10 +57,15 @@ socket.on('createdGameCode', function(data) {
   var gameCode = data.gameCode;
   if (gameCode != null) {
       console.log("hosting game " + gameCode);
-      window.globals.localGameState.gameCode = gameCode
+      window.globals.localGameState.gameCode = gameCode;
       window.game.state.start('waitForJoinState');
   }
 
-})
+});
+
+socket.on('joinedGame', function(data){
+  console.log("joined game: "+ data.gameCode);
+  window.game.state.start('hackerState');
+});
 
 window.globals.socket = socket;
