@@ -20,6 +20,7 @@ module.exports = function(grunt, server) {
 
       gameStates[newGameIndex] = {
         "gameCode": gameCode,
+        "hostSocketClientId": client.id,
         "hostState": {},
         "clientState": {}
       };
@@ -35,7 +36,13 @@ module.exports = function(grunt, server) {
       var gameState = gameStates[gameIndex];
       if (gameState !== null) {
 
+        gameState.hackerClient = client;
+
         client.emit('joinedGame', {"gameCode": enteredGameCode});
+
+        var hostId = gameState.hostSocketClientId;
+        io.sockets.socket(hostId).emit("hackerJoined", gameState);
+
       } else {
         console.log("game not found: "+ enteredGameCode);
       }

@@ -68,4 +68,8 @@ socket.on('joinedGame', function(data){
   window.game.state.start('hackerState');
 });
 
+socket.on('hackerJoined', function(data){
+  console.log('hacker joined!')
+})
+
 window.globals.socket = socket;
