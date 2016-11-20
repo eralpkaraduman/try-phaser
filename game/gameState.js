@@ -12,7 +12,6 @@ function create() {
   input.downKey = game.input.keyboard.addKey(Phaser.Keyboard.DOWN);
   input.leftKey = game.input.keyboard.addKey(Phaser.Keyboard.LEFT);
   input.rightKey = game.input.keyboard.addKey(Phaser.Keyboard.RIGHT);
-
 }
 
 function update() {
