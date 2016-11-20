@@ -4,7 +4,10 @@ module.exports = function(grunt, server) {
 
   var io = require('socket.io').listen(server);
 
+  var gameStates = [];
+
   io.sockets.on('connection', function(client) {
+
     // do something with socket
     console.log("connected!");
 
@@ -12,7 +15,21 @@ module.exports = function(grunt, server) {
       console.log("event");
     });
 
-    client.on('test', function(data){
+    client.on('createGame', function(data){
+      var newGameIndex = gameStates.length;
+      var gameCode = newGameIndex;
+
+      gameStates[newGameIndex] = {
+        "gameCode": gameCode,
+        "hostState": {},
+        "clientState": {}
+      };
+
+      client.emit("createdGameCode", {"gameCode": gameCode});
+    });
+
+    client.on('hostStateUpdate', function(data){
+
       console.log("test");
     });
 
@@ -21,4 +38,5 @@ module.exports = function(grunt, server) {
     });
 
   });
+
 };

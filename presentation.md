@@ -39,13 +39,13 @@
 
 ---
 
-# [fit] Global Game Jam
-# [fit] Ludum Dare
-# [fit] itch.io
+![original fit](http://ludumdare.com/compo/wp-content/compo2/308734/2525-shot0.png)
 
 ---
 
-![original fit](http://ludumdare.com/compo/wp-content/compo2/308734/2525-shot0.png)
+# [fit] Global Game Jam
+# [fit] Ludum Dare
+# [fit] itch.io
 
 ---
 
@@ -366,3 +366,14 @@ Person.prototype.move = function(input) {
 }
 
 ```
+
+----
+
+[phaser.org](eralpkaraduman.com)
+[ludumdare.com/compo/](http://ludumdare.com/compo/)
+[itch.io/jams](https://itch.io/jams)
+[globalgamejam.org](http://globalgamejam.org)
+[@superdamage](twitter.com/super_damage)
+[superdamage.com](superdamage.com)
+[eralpkaraduman.com](eralpkaraduman.com)
+[@eralpkaraduman](twitter.com/eralpkaraduman)

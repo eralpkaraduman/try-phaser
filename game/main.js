@@ -11,7 +11,15 @@ game.state.add('intro', introState);
 game.state.start('boot');
 window.game = game;
 
-var localGameState = {};
+window.globals = {
+
+  socket: null,
+  localGameState: {},
+  callCreateGame: function() {
+    socket.emit("createGame");
+  }
+
+}
 
 var socket = io('http://localhost:8080');
 socket.on('connect', function(){
@@ -23,8 +31,13 @@ socket.on('event', function(data){
 socket.on('disconnect', function(){
   console.log("disconnected!");
 });
+
 socket.on('error', function(){
   console.log("error!");
 });
 
-window.socket = socket;
+socket.on('createdGameCode', function(data) {
+  console.log("createdGameCode: " + data.gameCode);
+})
+
+window.globals.socket = socket;
